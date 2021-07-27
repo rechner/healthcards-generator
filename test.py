@@ -35,7 +35,7 @@ barcode_data = pyzbar.decode(Image.open('mine.png'))
 # Unpack SHC payload to a JWS
 jws_str = parser.decode_qr_to_jws(barcode_data[0].data.decode())
 
-print(jws_str)
+#print(jws_str)
 
 # Decode the JWS
 jws = parser.JWS(jws_str)
@@ -77,6 +77,6 @@ context = {
     "qrcode": qr_base64.decode(),
 }
 
-#print(template.render(**context))
+print(template.render(**context))
 
 #
