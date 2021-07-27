@@ -1,3 +1,4 @@
+import sys
 import base64
 from io import BytesIO
 
@@ -28,9 +29,16 @@ def human_name(human_name_instance):
 
     return ' '.join(parts) if len(parts) > 0 else 'Unnamed'
 
+if len(sys.argv) != 3:
+    print(f"Usage: {sys.argv[0]} <qr code image> <output.svg>")
+    exit()
 
 # Decode QR code
-barcode_data = pyzbar.decode(Image.open('mine.png'))
+barcode_data = pyzbar.decode(Image.open(sys.argv[1]))
+
+if len(barcode_data) == 0:
+    print("Unable to decode any QR codes :(")
+    exit()
 
 # Unpack SHC payload to a JWS
 jws_str = parser.decode_qr_to_jws(barcode_data[0].data.decode())
@@ -77,6 +85,5 @@ context = {
     "qrcode": qr_base64.decode(),
 }
 
-print(template.render(**context))
-
-#
+with open(sys.argv[2], 'w') as f:
+    f.write(template.render(**context))
