@@ -1,0 +1,5 @@
+git+https://github.com/smart-on-fhir/client-py.git@16540a46a
+healthcards>=0.1.2
+pyzbar==0.1.8
+qrcode[pil]==7.1
+Jinja2==3.0.1
