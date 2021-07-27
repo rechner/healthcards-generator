@@ -1,3 +1,11 @@
+Healthcards Generator
+======
+Decodes an SHC-formatted vaccine credential barcode and reformats it in a
+suitable manner for printing on a CR-80 size card.
+
+![example output](https://github.com/rechner/healthcards-generator/blob/main/doc/example_output.png?raw=true)
+
+
 Quickstart
 ==========
 
