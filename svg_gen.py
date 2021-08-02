@@ -63,7 +63,7 @@ for e in bundle.entry:
         decoded['status'] = e.resource.status
         decoded['date'] = e.resource.occurrenceDateTime.isostring
         decoded['performer'] = e.resource.performer[0].actor.display
-        vaccinations.append(decoded)
+        vaccinations.append(dict(decoded))
 
 env = Environment(
     loader=PackageLoader("generator"),
@@ -76,7 +76,6 @@ qr_img = qrcode.make(barcode_data[0].data.decode())
 buffered = BytesIO()
 qr_img.save(buffered, format="PNG")
 qr_base64 = base64.b64encode(buffered.getvalue())
-#import pdb; pdb.set_trace()
 
 context = {
     "name": name,
