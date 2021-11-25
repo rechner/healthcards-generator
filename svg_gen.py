@@ -62,7 +62,11 @@ for e in bundle.entry:
         decoded['lotNumber'] = e.resource.lotNumber
         decoded['status'] = e.resource.status
         decoded['date'] = e.resource.occurrenceDateTime.isostring
-        decoded['performer'] = e.resource.performer[0].actor.display
+        try:
+            decoded['performer'] = e.resource.performer[0].actor.display
+        except TypeError:
+            decoded['performer'] = None
+
         vaccinations.append(dict(decoded))
 
 env = Environment(
